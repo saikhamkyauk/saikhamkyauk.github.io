@@ -1062,6 +1062,152 @@
 
     footer a:hover { text-decoration: underline; }
 
+    /* ── HAMBURGER NAV ──────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 210;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,.8);
+      border-radius: 2px;
+      transition: all .25s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+
+    /* Responsive images — always fluid */
+    img { max-width: 100%; height: auto; }
+
+    /* Hero photo — fluid inside its frame */
+    .hero-photo,
+    .hero-placeholder {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      aspect-ratio: 13 / 16;
+    }
+    .hero-photo-frame {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      aspect-ratio: 13 / 16;
+    }
+
+    /* ── TABLET (≤ 960px) ───────────────────────────────────── */
+    @media (max-width: 960px) {
+      /* Fluid section padding */
+      .section { padding: 64px 5%; }
+
+      /* Hero: stack photo above text */
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+        padding: 4rem 0;
+      }
+      .hero-name { font-size: clamp(1.8rem, 5vw, 3rem); }
+      .hero-eyebrow { justify-content: center; }
+      .hero-statement { margin-left: auto; margin-right: auto; }
+      .hero-tags { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-photo-wrap { justify-self: center; order: -1; }
+      .hero-photo-frame,
+      .hero-photo,
+      .hero-placeholder { max-width: 200px; }
+
+      /* Grids: collapse to single column */
+      .about-grid,
+      .edu-layout,
+      .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr; }
+      .pub-card { grid-template-columns: 1fr; gap: 1.6rem; }
+      .research-list { grid-template-columns: 1fr; }
+      .skills-groups { grid-template-columns: 1fr; }
+
+      /* Section headings: fluid size */
+      .section-heading { font-size: clamp(1.4rem, 4vw, 2rem); }
+    }
+
+    /* ── MOBILE (≤ 640px) ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+
+      /* Nav: hamburger replaces links */
+      nav { padding: 0 4%; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--navy-dark);
+        flex-direction: column;
+        padding: 1.2rem 0 1.6rem;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: .75rem 6%;
+        font-size: .82rem;
+        color: rgba(255,255,255,.75);
+      }
+
+      /* Hero */
+      .hero-inner { padding: 3rem 0 2.5rem; }
+      .hero-name { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+      .hero-title { font-size: 1rem; }
+      .hero-statement { font-size: .97rem; padding-left: 1rem; }
+      .hero-photo-frame,
+      .hero-photo,
+      .hero-placeholder { max-width: 160px; }
+
+      /* Sections */
+      .section { padding: 52px 4%; }
+      .section-heading { font-size: 1.5rem; }
+
+      /* Expertise: single column */
+      .expertise-grid { grid-template-columns: 1fr; }
+
+      /* Form */
+      .form-row-two { grid-template-columns: 1fr; }
+
+      /* Publication card */
+      .pub-card { padding: 1.6rem; }
+      .pub-title { font-size: 1.05rem; }
+
+      /* Buttons: full-width stack on very small screens */
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; text-align: center; }
+    }
+
+    /* ── SMALL MOBILE (≤ 420px) ─────────────────────────────── */
+    @media (max-width: 420px) {
+      .hero-name { font-size: 1.6rem; }
+      .section { padding: 44px 4%; }
+      .expertise-card { padding: 1.4rem; }
+      .project-card { padding: 1.4rem; }
+      .tl-item { padding-left: 2rem; }
+    }
     /* ── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 960px) {
       .hero-inner {
@@ -1096,7 +1242,7 @@
   <!-- NAV -->
   <nav>
     <a href="#hero" class="nav-brand">Sai Kham <span>Kyauk</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#expertise">Expertise</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -1581,6 +1727,22 @@
   </footer>
 
   <script>
+    // ── Hamburger menu toggle ────────────────────────────────
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', false);
+      });
+    });
     // ── Nav active state ────────────────────────────────────
     const sections = [...document.querySelectorAll('section[id]')];
     const navAs = [...document.querySelectorAll('.nav-links a')];
