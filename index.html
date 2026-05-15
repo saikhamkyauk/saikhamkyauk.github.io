@@ -440,14 +440,31 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.4rem;
+      perspective: 1200px;
     }
 
     .expertise-card {
       border: 1px solid var(--border);
       border-radius: 4px;
       padding: 1.8rem;
-      transition: border-color .2s, box-shadow .2s;
+      transition: border-color .25s, box-shadow .25s, transform .18s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      overflow: hidden;
     }
+
+    .expertise-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.12) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .25s;
+      pointer-events: none;
+    }
+    .expertise-card:hover::after { opacity: 1; }
 
     .expertise-card:hover {
       border-color: var(--navy-mid);
@@ -749,7 +766,24 @@
       grid-template-columns: 1fr auto;
       gap: 2.5rem;
       align-items: center;
+      transition: border-color .25s, box-shadow .25s, transform .18s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      overflow: hidden;
     }
+
+    .pub-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.09) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .25s;
+      pointer-events: none;
+    }
+    .pub-card:hover::after { opacity: 1; }
 
     .pub-journal {
       font-family: 'Montserrat', sans-serif;
@@ -1806,7 +1840,7 @@
     }
 
     // 3D card tilt
-    document.querySelectorAll('.project-card').forEach(card => {
+    document.querySelectorAll('.project-card, .expertise-card, .pub-card').forEach(card => {
       const T = 9, S = 1.03;
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
