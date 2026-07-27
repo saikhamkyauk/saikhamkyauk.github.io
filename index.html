@@ -1298,6 +1298,148 @@
       nav { padding: 0 4%; }
       .nav-links { gap: 1.4rem; }
     }
+  
+    /* ── KNOWLEDGE HUB ─────────────────────────────────────── */
+    #knowledge { background: #f2f4f8; }
+
+    .khub-intro { max-width: 680px; margin-bottom: 3rem; }
+    .khub-intro p { font-size: 1.05rem; color: var(--navy-mid); line-height: 1.75; }
+
+    /* Search & Filter */
+    .khub-controls { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
+    .khub-search-wrap {
+      display: flex; align-items: center; gap: .75rem;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: .8rem 1.25rem;
+      transition: border-color .2s;
+    }
+    .khub-search-wrap:focus-within { border-color: var(--navy-mid); }
+    .khub-search-icon { font-size: 1.1rem; color: #9ba8bb; flex-shrink: 0; }
+    .khub-search-input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: inherit; font-size: 1rem; color: var(--navy-dark);
+    }
+    .khub-search-input::placeholder { color: #9ba8bb; }
+
+    .khub-filter-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .khub-filter-btn {
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; padding: .4rem 1.1rem; border-radius: 100px;
+      border: 1.5px solid var(--border); background: transparent;
+      color: var(--navy-mid); cursor: pointer; transition: all .2s;
+    }
+    .khub-filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .khub-filter-btn.active { background: var(--navy-dark); border-color: var(--navy-dark); color: var(--white); }
+
+    /* Accordion */
+    .khub-categories { display: flex; flex-direction: column; gap: .875rem; }
+    .khub-cat { background: var(--white); border-radius: 8px; box-shadow: 0 1px 0 var(--border), 0 4px 24px rgba(27,53,100,.07); overflow: hidden; }
+    .khub-cat.khub-hidden { display: none; }
+
+    .khub-cat-trigger {
+      width: 100%; display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.5rem 2rem; background: none; border: none;
+      cursor: pointer; text-align: left; transition: background .2s;
+    }
+    .khub-cat-trigger:hover { background: rgba(27,53,100,.025); }
+
+    .khub-cat-num {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      font-weight: 700; color: var(--gold); min-width: 2.2rem; flex-shrink: 0;
+    }
+    .khub-cat-info { flex: 1; min-width: 0; }
+    .khub-cat-title {
+      font-family: 'Playfair Display', serif; font-size: 1.05rem;
+      font-weight: 700; color: var(--navy-dark); line-height: 1.3;
+    }
+    .khub-cat-subdesc { font-size: .85rem; color: var(--navy-mid); margin-top: .2rem; }
+    .khub-cat-meta { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .khub-cat-count {
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--navy-mid);
+    }
+    .khub-chevron {
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: rgba(27,53,100,.08); color: var(--navy-mid);
+      font-size: .85rem; transition: transform .3s ease; flex-shrink: 0;
+    }
+    .khub-cat.open .khub-chevron { transform: rotate(180deg); color: var(--gold); background: rgba(184,146,42,.1); }
+
+    .khub-cat-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+    .khub-cat.open .khub-cat-body { max-height: 6000px; }
+    .khub-cat-body-inner { padding: .5rem 2rem 2rem; border-top: 1px solid var(--border); }
+
+    /* Jurisdiction dividers (cat 5) */
+    .khub-jurisdiction {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--navy-mid);
+      padding: 1.25rem 0 .6rem; margin-bottom: .75rem;
+      border-bottom: 1px solid var(--border); display: flex;
+      align-items: center; gap: .6rem;
+    }
+    .khub-jurisdiction::before { content: ''; flex: 0 0 20px; height: 2px; background: var(--gold); display: block; }
+
+    /* Cards grid */
+    .khub-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; padding-top: 1.25rem; }
+    .khub-card {
+      border: 1.5px solid var(--border); border-radius: 8px; padding: 1.25rem 1.4rem;
+      display: flex; flex-direction: column; gap: .8rem;
+      transition: box-shadow .2s, border-color .2s, transform .18s;
+      background: var(--white); position: relative;
+    }
+    .khub-card:hover { border-color: var(--gold); box-shadow: 0 6px 24px rgba(27,53,100,.11); transform: translateY(-2px); }
+    .khub-card.khub-hidden { display: none; }
+
+    /* Type badges */
+    .khub-badge {
+      display: inline-block; font-size: .62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .09em;
+      padding: .22rem .6rem; border-radius: 3px; align-self: flex-start;
+    }
+    .khub-badge.international { background: var(--navy-dark); color: var(--white); }
+    .khub-badge.voluntary { background: #1a5e4e; color: var(--white); }
+    .khub-badge.industry { background: var(--gold); color: var(--white); }
+    .khub-badge.legislation { background: #7a2d14; color: var(--white); }
+
+    .khub-card-name {
+      font-family: 'Playfair Display', serif; font-size: .95rem;
+      font-weight: 700; color: var(--navy-dark); line-height: 1.35;
+    }
+    .khub-card-desc { font-size: .855rem; color: #4a5a7a; line-height: 1.68; flex: 1; }
+
+    .khub-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .khub-tag {
+      font-size: .62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; padding: .18rem .5rem; border-radius: 3px;
+      background: rgba(27,53,100,.07); color: var(--navy-mid);
+    }
+
+    .khub-card-footer { padding-top: .6rem; border-top: 1px solid var(--border); }
+    .khub-src-link {
+      font-size: .78rem; font-weight: 600; color: var(--gold);
+      text-decoration: none; transition: color .2s;
+      display: flex; align-items: center; gap: .3rem;
+    }
+    .khub-src-link:hover { color: var(--navy-dark); }
+
+    /* No results */
+    .khub-no-results {
+      text-align: center; padding: 4rem 2rem; color: var(--navy-mid);
+      font-style: italic; display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .khub-cat-trigger { padding: 1.25rem 1.5rem; }
+      .khub-cat-body-inner { padding: .5rem 1.5rem 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      .khub-cat-trigger { padding: 1rem; gap: .75rem; }
+      .khub-cat-body-inner { padding: .5rem 1rem 1.25rem; }
+      .khub-cards { grid-template-columns: 1fr; }
+      .khub-cat-subdesc, .khub-cat-count { display: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -1314,6 +1456,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#publication">Research</a></li>
+      <li><a href="#knowledge">Knowledge</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -1762,7 +1905,33 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- KNOWLEDGE HUB -->
+  <section id="knowledge" class="section">
+    <div class="section-label-wrap">
+      <p class="section-kicker">Knowledge Hub</p>
+      <h2 class="section-heading">Professional Knowledge Hub</h2>
+    </div>
+    <div class="khub-intro">
+      <p>A curated reference library of international standards, voluntary frameworks, industry tools, and national legislation underpinning Business &amp; Human Rights and Supply Chain Governance practice — compiled from primary institutional sources.</p>
+    </div>
+    <div class="khub-controls">
+      <div class="khub-search-wrap">
+        <span class="khub-search-icon">&#9906;</span>
+        <input class="khub-search-input" id="khubSearch" type="search" placeholder="Search frameworks, standards, legislation&hellip;" autocomplete="off" />
+      </div>
+      <div class="khub-filter-row">
+        <button class="khub-filter-btn active" data-type="all">All</button>
+        <button class="khub-filter-btn" data-type="international">International Standards</button>
+        <button class="khub-filter-btn" data-type="voluntary">Voluntary Frameworks</button>
+        <button class="khub-filter-btn" data-type="industry">Industry Standards</button>
+        <button class="khub-filter-btn" data-type="legislation">National Legislation</button>
+      </div>
+    </div>
+    <div class="khub-no-results" id="khubNoResults">No frameworks match your search. Try a different keyword or filter.</div>
+    <div class="khub-categories" id="khubCategories"></div>
+  </section>
+
+    <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="section-inner">
       <div class="section-header">
@@ -1881,6 +2050,291 @@
         setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; }, 4000);
       });
     }
+
+    // ── Knowledge Hub ─────────────────────────────────────
+    (function () {
+      const KH = [
+        {
+          num: '01', id: 'cat1',
+          title: 'International Human Rights &amp; Labour Standards',
+          desc: 'The foundational international frameworks underpinning responsible business conduct.',
+          items: [
+            { name: 'ILO Fundamental Principles and Rights at Work', type: 'international', tl: 'International Standard',
+              desc: 'The 1998 ILO Declaration (amended 2022) committing all ILO member States to freedom of association, collective bargaining, elimination of forced and child labour, and non-discrimination — regardless of ratification status.',
+              tags: ['ILO', 'Labour Rights', 'Forced Labour', 'Child Labour'],
+              src: 'ILO — About the Declaration', url: 'https://www.ilo.org/ilo-declaration-fundamental-principles-and-rights-work' },
+            { name: 'ILO Forced Labour Convention (No.29) &amp; Protocol (P29)', type: 'international', tl: 'International Standard',
+              desc: 'The 1930 Convention defining and prohibiting forced labour, supplemented by the legally binding 2014 Protocol establishing obligations for prevention, protection, and remediation.',
+              tags: ['ILO', 'Forced Labour', 'Convention', 'Protocol'],
+              src: 'ILO NORMLEX — Protocol P029', url: 'https://normlex.ilo.org/dyn/normlex/en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:P029' },
+            { name: 'ILO 11 Indicators of Forced Labour', type: 'international', tl: 'International Standard',
+              desc: 'A practical field guide translating the legal definition of forced labour into eleven observable indicators — including debt bondage, document retention, and threats — to help practitioners identify forced labour situations on the ground.',
+              tags: ['ILO', 'Forced Labour', 'Risk Assessment', 'Field Tool'],
+              src: 'ILO — Indicators of Forced Labour', url: 'https://www.ilo.org/global/topics/forced-labour/publications/WCMS_203832/lang--en/index.htm' },
+            { name: 'ILO Fair Recruitment Principles &amp; Operational Guidelines', type: 'international', tl: 'International Standard',
+              desc: 'Non-binding general principles and operational guidelines defining fair recruitment and fee practices, clarifying obligations for public and private employment agencies and recruiters in cross-border contexts.',
+              tags: ['ILO', 'Recruitment', 'Migration', 'Fair Recruitment'],
+              src: 'ILO — General Principles for Fair Recruitment', url: 'https://www.ilo.org/global/topics/labour-migration/publications/WCMS_536755/lang--en/index.htm' },
+            { name: 'UN Guiding Principles on Business and Human Rights (UNGPs)', type: 'international', tl: 'International Standard',
+              desc: 'The 31 principles unanimously endorsed by the UN Human Rights Council in 2011, structured around three pillars: State duty to protect human rights, corporate responsibility to respect human rights, and access to remedy.',
+              tags: ['UN', 'UNGPs', 'HRDD', 'Due Diligence', 'Remedy'],
+              src: 'OHCHR — Guiding Principles on Business and Human Rights', url: 'https://www.ohchr.org/sites/default/files/documents/publications/guidingprinciplesbusinesshr_en.pdf' },
+            { name: 'OECD Due Diligence Guidance for Responsible Business Conduct', type: 'international', tl: 'International Standard',
+              desc: 'Practical, plain-language guidance helping enterprises implement risk-based due diligence in line with the OECD MNE Guidelines, covering human rights, environment, bribery, and consumer interests across supply chains.',
+              tags: ['OECD', 'Due Diligence', 'ESG', 'MNE Guidelines'],
+              src: 'OECD — Due Diligence Guidance for Responsible Business Conduct', url: 'https://www.oecd.org/investment/due-diligence-guidance-for-responsible-business-conduct.htm' }
+          ]
+        },
+        {
+          num: '02', id: 'cat2',
+          title: 'Human Rights Due Diligence (HRDD)',
+          desc: 'Frameworks for identifying, preventing, mitigating, and remediating human rights risks in business operations and supply chains.',
+          items: [
+            { name: 'Human Rights Due Diligence (HRDD)', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The ongoing process (UNGP Principles 17-21) by which businesses identify, prevent, mitigate, and account for how they address adverse human rights impacts across their operations, supply chain, and business relationships.',
+              tags: ['HRDD', 'UNGPs', 'Due Diligence', 'Pillar II'],
+              src: 'OHCHR — Business and Human Rights', url: 'https://www.ohchr.org/en/business-and-human-rights' },
+            { name: 'Human Rights Impact Assessment (HRIA)', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'A structured, rights-holder-centred methodology for assessing actual and potential human rights impacts of a business project or relationship, developed by the Danish Institute for Human Rights.',
+              tags: ['HRDD', 'Impact Assessment', 'Risk Assessment', 'Rights-Holders'],
+              src: 'Danish Institute for Human Rights — HRIA Guidance and Toolbox', url: 'https://www.humanrights.dk/tools/human-rights-impact-assessment-guidance-toolbox' },
+            { name: 'Salient Human Rights Issues', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The human rights at risk of the most severe impact through a company activities or business relationships, assessed by scale, scope, and remediability — forming the priority focus of HRDD.',
+              tags: ['HRDD', 'Risk Assessment', 'UNGPs', 'Shift'],
+              src: 'Shift — Introduction to Salient Human Rights Issues', url: 'https://shiftproject.org/resources/salient-issues/introduction-to-salient-human-rights-issues/' },
+            { name: 'Stakeholder Engagement', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The ongoing, meaningful engagement with rights-holders and stakeholders that sits at the core of HRDD, ensuring those affected by business activities can inform risk identification and remediation decisions.',
+              tags: ['HRDD', 'Worker Voice', 'Due Diligence', 'Engagement'],
+              src: 'Danish Institute — Stakeholder Engagement in HRIA', url: 'https://www.humanrights.dk/tools/stakeholder-engagement-human-rights-impact-assessments' },
+            { name: 'Risk Assessment, Prevention &amp; Mitigation', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The prioritisation of human rights risks by severity and likelihood, and the preventive and mitigating action required — covering both direct and value chain impacts in line with OECD and UNGP standards.',
+              tags: ['HRDD', 'Risk Assessment', 'Prevention', 'OECD'],
+              src: 'OECD — Due Diligence Guidance for Responsible Business Conduct', url: 'https://www.oecd.org/investment/due-diligence-guidance-for-responsible-business-conduct.htm' },
+            { name: 'Remediation', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The corrective and remedial action required when a business has caused or contributed to adverse human rights impacts — ranging from enabling access to grievance mechanisms to direct remedy and systemic change.',
+              tags: ['HRDD', 'Remediation', 'Remedy', 'UNGPs', 'Pillar III'],
+              src: 'OHCHR — Remediation and Grievance Mechanisms', url: 'https://www.ohchr.org/en/business-and-human-rights/grievance-mechanisms' }
+          ]
+        },
+        {
+          num: '03', id: 'cat3',
+          title: 'Responsible Recruitment &amp; Worker Voice',
+          desc: 'Worker-centred frameworks and tools for preventing forced labour in recruitment and amplifying worker voice across supply chains.',
+          items: [
+            { name: 'Employer Pays Principle (EPP)', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The commitment that no worker should pay for a job — all recruitment costs and fees should be borne by the employer, not the worker — in line with ILO norms and reflected in the Dhaka Principles.',
+              tags: ['Recruitment', 'EPP', 'Migration', 'ILO', 'IHRB'],
+              src: 'IHRB — The Employer Pays Principle', url: 'https://www.ihrb.org/employerpays/the-employer-pays-principle' },
+            { name: 'Dhaka Principles for Migration with Dignity', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'A set of principles for the fair treatment of migrant workers throughout the migration cycle — from pre-recruitment through repatriation — developed through global multi-stakeholder consultation led by IHRB.',
+              tags: ['Recruitment', 'Migration', 'IHRB', 'Dignity', 'Migrant Workers'],
+              src: 'IHRB — Dhaka Principles for Migration with Dignity', url: 'https://www.ihrb.org/dhaka-principles' },
+            { name: 'Leadership Group for Responsible Recruitment (LGRR)', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'A company-led collective advocacy platform convened by IHRB that promotes the Employer Pays Principle and responsible recruitment standards across global supply chains through peer learning and public commitment.',
+              tags: ['Recruitment', 'LGRR', 'IHRB', 'EPP', 'Collective Action'],
+              src: 'IHRB — Leadership Group for Responsible Recruitment', url: 'https://www.ihrb.org/employerpays/leadership-group-for-responsible-recruitment' },
+            { name: 'Forced Labour Indicators in Recruitment (ILO / LGRR)', type: 'international', tl: 'International Standard',
+              desc: 'The ILO 11 Indicators of Forced Labour as applied by the LGRR in recruitment screening — identifying debt bondage, document retention, deception, and other recruitment-phase forced labour risks.',
+              tags: ['ILO', 'Forced Labour', 'Recruitment', 'LGRR', 'Risk Assessment'],
+              src: 'ILO — Indicators of Forced Labour (2025 revised edition)', url: 'https://www.ilo.org/global/topics/forced-labour/publications/WCMS_203832/lang--en/index.htm' },
+            { name: 'Worker Voice Systems', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'Mechanisms — from factory-level dialogue to digital platforms and worker helplines — that give workers a structured channel to raise concerns, access information, and be heard throughout their employment.',
+              tags: ['Worker Voice', 'Grievance', 'Empowerment', 'Digital', 'Better Work'],
+              src: 'Better Work (ILO / IFC)', url: 'https://betterwork.org' },
+            { name: 'Operational Grievance Mechanisms (OGMs)', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'Company-level, non-judicial channels for raising and resolving grievances, assessed against the eight UNGPs effectiveness criteria — including legitimacy, accessibility, transparency, and compatibility with rights.',
+              tags: ['Grievance', 'UNGPs', 'Worker Voice', 'Remedy', 'Pillar III'],
+              src: 'OHCHR — Meeting the UNGPs Effectiveness Criteria', url: 'https://www.ohchr.org/en/business-and-human-rights/grievance-mechanisms' }
+          ]
+        },
+        {
+          num: '04', id: 'cat4',
+          title: 'Ethical Trade &amp; Social Compliance',
+          desc: 'Industry standards and audit frameworks used to assess labour conditions and supplier performance.',
+          items: [
+            { name: 'ETI Base Code', type: 'industry', tl: 'Industry Standard',
+              desc: 'A nine-principle code of labour practice founded on ILO conventions, covering employment terms, wages, working hours, health &amp; safety, child labour, forced labour, and freedom of association.',
+              tags: ['ETI', 'Audit', 'Labour Rights', 'ILO', 'Code of Conduct'],
+              src: 'Ethical Trading Initiative — ETI Base Code', url: 'https://www.ethicaltrade.org/eti-base-code' },
+            { name: 'SMETA (Sedex Members Ethical Trade Audit)', type: 'industry', tl: 'Industry Standard',
+              desc: 'The most widely used social audit methodology, assessing suppliers across four pillars: labour standards, health &amp; safety, environment, and business ethics — under the Sedex framework.',
+              tags: ['SMETA', 'Sedex', 'Audit', 'Social Compliance', '4-Pillar'],
+              src: 'Sedex — SMETA Audit', url: 'https://www.sedex.com/our-services/smeta-audit/' },
+            { name: 'amfori BSCI', type: 'industry', tl: 'Industry Standard',
+              desc: 'The Business Social Compliance Initiative code of conduct and monitoring system, widely used across European retail and garment supply chains to assess and improve supplier social performance.',
+              tags: ['BSCI', 'amfori', 'Audit', 'Social Compliance', 'Europe'],
+              src: 'amfori — BSCI Documents', url: 'https://www.amfori.org/en/bsci' },
+            { name: 'Responsible Business Alliance (RBA)', type: 'industry', tl: 'Industry Standard',
+              desc: 'A code of conduct originating in electronics manufacturing covering labour, health &amp; safety, environment, and ethics — adopted by global brands and their supply chains to drive responsible business practices.',
+              tags: ['RBA', 'Electronics', 'Social Compliance', 'ESG', 'Code of Conduct'],
+              src: 'Responsible Business Alliance — Code of Conduct', url: 'https://www.responsiblebusiness.org/code-of-conduct/' },
+            { name: 'Social &amp; Labor Convergence Program (SLCP)', type: 'industry', tl: 'Industry Standard',
+              desc: 'A multi-stakeholder initiative providing a single, converged social and labour data collection tool (the Converged Assessment Framework) to replace duplicative auditing and redirect investment to improvement.',
+              tags: ['SLCP', 'Social Audit', 'Convergence', 'CAF', 'Data Collection'],
+              src: 'Social &amp; Labor Convergence Program', url: 'https://slconvergence.org' },
+            { name: 'SA8000', type: 'industry', tl: 'Industry Standard',
+              desc: 'A certifiable social accountability standard covering child labour, forced labour, health &amp; safety, freedom of association, discrimination, disciplinary practices, working hours, and remuneration.',
+              tags: ['SA8000', 'Certification', 'Social Accountability', 'SAI'],
+              src: 'Social Accountability International — SA8000 Standard', url: 'https://sa-intl.org/programs/sa8000/' }
+          ]
+        },
+        {
+          num: '05', id: 'cat5',
+          title: 'Modern Slavery &amp; Forced Labour Legislation',
+          desc: 'Key national and regional legal frameworks governing business responsibility to address forced labour — organised by jurisdiction.',
+          jurisdictions: true,
+          items: [
+            { name: 'Section 307, Tariff Act of 1930', type: 'legislation', tl: 'National Legislation', jur: 'United States',
+              desc: '19 U.S.C. 1307 — prohibits the importation of goods mined, produced, or manufactured wholly or in part by forced labour, convict labour, or indentured labour under penal sanctions.',
+              tags: ['US', 'Trade', 'Forced Labour', 'Import Ban', 'CBP'],
+              src: 'US Customs and Border Protection — Forced Labor Laws', url: 'https://www.cbp.gov/trade/forced-labor/section-307' },
+            { name: 'Withhold Release Orders (WRO)', type: 'legislation', tl: 'National Legislation', jur: 'United States',
+              desc: 'CBP orders directing ports of entry to detain shipments where reasonable — though not conclusive — evidence exists that forced labour was used in the production of goods.',
+              tags: ['US', 'WRO', 'Trade', 'CBP', 'Import Enforcement'],
+              src: 'US CBP — Withhold Release Orders and Findings', url: 'https://www.cbp.gov/trade/forced-labor/withhold-release-orders-and-findings' },
+            { name: 'Uyghur Forced Labor Prevention Act (UFLPA)', type: 'legislation', tl: 'National Legislation', jur: 'United States',
+              desc: '2021 US legislation creating a rebuttable presumption that goods made wholly or in part in Xinjiang — or by entities on the UFLPA Entity List — were produced with forced labour and are prohibited from import.',
+              tags: ['US', 'UFLPA', 'Xinjiang', 'Forced Labour', 'Rebuttable Presumption'],
+              src: 'US CBP — UFLPA Implementation', url: 'https://www.cbp.gov/trade/forced-labor/UFLPA' },
+            { name: 'Modern Slavery Act 2015', type: 'legislation', tl: 'National Legislation', jur: 'United Kingdom',
+              desc: 'UK legislation consolidating trafficking and slavery offences and, under section 54, requiring large businesses to publish an annual transparency statement disclosing steps taken to address modern slavery in their operations and supply chains.',
+              tags: ['UK', 'Modern Slavery', 'Reporting', 'Transparency Statement', 'Section 54'],
+              src: 'GOV.UK — Modern Slavery Act 2015', url: 'https://www.legislation.gov.uk/ukpga/2015/30/contents' },
+            { name: 'Modern Slavery Act 2018 (Cth)', type: 'legislation', tl: 'National Legislation', jur: 'Australia',
+              desc: 'Requires businesses operating in Australia with annual consolidated revenue of AUD 100 million or more to publish annual modern slavery statements identifying and addressing risks in their operations and supply chains.',
+              tags: ['Australia', 'Modern Slavery', 'Reporting', 'Supply Chain', 'MSA Statement'],
+              src: 'Australian Government — Modern Slavery Act', url: 'https://www.homeaffairs.gov.au/criminal-justice/Pages/modern-slavery.aspx' },
+            { name: 'Corporate Sustainability Due Diligence Directive (CSDDD)', type: 'legislation', tl: 'National Legislation', jur: 'European Union',
+              desc: 'EU directive establishing mandatory human rights and environmental due diligence for large EU and non-EU companies operating in the EU single market, with civil liability and supervisory authority enforcement.',
+              tags: ['EU', 'CSDDD', 'Due Diligence', 'HRDD', 'Mandatory'],
+              src: 'European Commission — Corporate Sustainability Due Diligence', url: 'https://commission.europa.eu/business-economy-euro/doing-business-in-eu/sustainability-due-diligence-responsible-business/corporate-sustainability-due-diligence_en' },
+            { name: 'Corporate Sustainability Reporting Directive (CSRD)', type: 'legislation', tl: 'National Legislation', jur: 'European Union',
+              desc: 'EU directive requiring large and listed companies to disclose detailed, assured sustainability information under the European Sustainability Reporting Standards (ESRS), including human rights and supply chain topics.',
+              tags: ['EU', 'CSRD', 'ESG', 'Reporting', 'ESRS'],
+              src: 'European Commission — Corporate Sustainability Reporting', url: 'https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en' },
+            { name: 'EU Forced Labour Regulation', type: 'legislation', tl: 'National Legislation', jur: 'European Union',
+              desc: 'Regulation (EU) 2024/3015 prohibiting the placing, making available on, or export from the EU single market of products made with forced labour, enforceable by national competent authorities and the European Commission.',
+              tags: ['EU', 'Forced Labour', 'Trade', 'Market Access', 'Prohibition'],
+              src: 'European Commission — EU Forced Labour Regulation', url: 'https://single-market-economy.ec.europa.eu/sectors/raw-materials/areas-specific-interest/forced-labour_en' }
+          ]
+        },
+        {
+          num: '06', id: 'cat6',
+          title: 'Supply Chain Governance &amp; Responsible Business',
+          desc: 'Implementation frameworks for responsible business practice, traceability, and continuous improvement across global supply chains.',
+          items: [
+            { name: 'Responsible Sourcing', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The integration of human rights and environmental risk assessment into sourcing decisions, guided by the OECD cross-sector due diligence framework and sector-specific mineral, garment, and agriculture guidelines.',
+              tags: ['OECD', 'ESG', 'Supply Chain', 'Due Diligence', 'Sourcing'],
+              src: 'OECD — Responsible Business Conduct', url: 'https://www.oecd.org/investment/due-diligence-guidance-for-responsible-business-conduct.htm' },
+            { name: 'Supply Chain Mapping &amp; Traceability', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The practice of identifying and disclosing supplier relationships and production locations down the value chain — from tier 1 through raw material — supported by tools like Open Supply Hub.',
+              tags: ['Traceability', 'Supply Chain', 'Transparency', 'Mapping'],
+              src: 'Open Supply Hub', url: 'https://opensupplyhub.org' },
+            { name: 'Supplier Engagement', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'Structured, ongoing collaboration between buyers and suppliers to build shared understanding, capacity, and accountability — moving beyond audit compliance to genuine and sustained improvement.',
+              tags: ['Supply Chain', 'Engagement', 'ILO', 'Capacity Building'],
+              src: 'ILO — Helpdesk for Business on International Labour Standards', url: 'https://www.ilo.org/business-and-labour-standards/about-the-helpdesk' },
+            { name: 'Responsible Purchasing Practices', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'A five-principle framework helping buyers review and improve their own commercial behaviour — pricing, planning, payment terms, and partnership — to avoid creating conditions that drive non-compliance at supplier level.',
+              tags: ['Purchasing', 'Supply Chain', 'Buyer Behaviour', 'CFRPP'],
+              src: 'Common Framework for Responsible Purchasing Practices (CFRPP)', url: 'https://www.cfrpp.org' },
+            { name: 'ESG Integration', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'The incorporation of environmental, social, and governance factors — including human rights performance — into investment decisions and business reporting, guided by the UN Principles for Responsible Investment.',
+              tags: ['ESG', 'Investment', 'Reporting', 'UN', 'PRI'],
+              src: 'UN Principles for Responsible Investment (PRI)', url: 'https://www.unpri.org' },
+            { name: 'Continuous Improvement &amp; Remediation', type: 'voluntary', tl: 'Voluntary Framework',
+              desc: 'A structured, step-by-step approach to strengthening supply chain social compliance and remediating violations — modelled on the US DOL ILAB Comply Chain framework iterative improvement cycle.',
+              tags: ['Remediation', 'Compliance', 'Supply Chain', 'ILAB', 'Continuous Improvement'],
+              src: 'US Department of Labor — ILAB Comply Chain', url: 'https://www.dol.gov/agencies/ilab/comply-chain' }
+          ]
+        }
+      ];
+
+      function renderHub() {
+        const container = document.getElementById('khubCategories');
+        if (!container) return;
+        container.innerHTML = '';
+        KH.forEach(function (cat) {
+          const count = cat.items.length;
+          const catEl = document.createElement('div');
+          catEl.className = 'khub-cat';
+          catEl.id = cat.id;
+          let bodyHTML = '';
+          if (cat.jurisdictions) {
+            const jurs = [...new Set(cat.items.map(i => i.jur))];
+            jurs.forEach(function (j) {
+              bodyHTML += '<div class="khub-jurisdiction">' + j + '</div><div class="khub-cards">';
+              cat.items.filter(i => i.jur === j).forEach(function (item) { bodyHTML += cardHTML(item); });
+              bodyHTML += '</div>';
+            });
+          } else {
+            bodyHTML = '<div class="khub-cards">';
+            cat.items.forEach(function (item) { bodyHTML += cardHTML(item); });
+            bodyHTML += '</div>';
+          }
+          catEl.innerHTML =
+            '<button class="khub-cat-trigger" aria-expanded="false">' +
+              '<span class="khub-cat-num">' + cat.num + '</span>' +
+              '<span class="khub-cat-info">' +
+                '<span class="khub-cat-title">' + cat.title + '</span>' +
+                '<span class="khub-cat-subdesc">' + cat.desc + '</span>' +
+              '</span>' +
+              '<span class="khub-cat-meta">' +
+                '<span class="khub-cat-count">' + count + ' frameworks</span>' +
+                '<span class="khub-chevron">&#9660;</span>' +
+              '</span>' +
+            '</button>' +
+            '<div class="khub-cat-body"><div class="khub-cat-body-inner">' + bodyHTML + '</div></div>';
+          catEl.querySelector('.khub-cat-trigger').addEventListener('click', function () {
+            const isOpen = catEl.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen);
+          });
+          container.appendChild(catEl);
+        });
+      }
+
+      function cardHTML(item) {
+        const tags = item.tags.map(t => '<span class="khub-tag">' + t + '</span>').join('');
+        return '<div class="khub-card" data-type="' + item.type + '" data-search="' + (item.name + ' ' + item.desc + ' ' + item.tags.join(' ')).toLowerCase() + '">' +
+          '<span class="khub-badge ' + item.type + '">' + item.tl + '</span>' +
+          '<div class="khub-card-name">' + item.name + '</div>' +
+          '<div class="khub-card-desc">' + item.desc + '</div>' +
+          '<div class="khub-tags">' + tags + '</div>' +
+          '<div class="khub-card-footer">' +
+            '<a class="khub-src-link" href="' + item.url + '" target="_blank" rel="noopener">&#10147; ' + item.src + '</a>' +
+          '</div></div>';
+      }
+
+      function applyFilters() {
+        const query = (document.getElementById('khubSearch').value || '').toLowerCase().trim();
+        const activeType = (document.querySelector('.khub-filter-btn.active') || {}).dataset.type || 'all';
+        let anyVisible = false;
+        document.querySelectorAll('.khub-cat').forEach(function (catEl) {
+          let catHasVisible = false;
+          catEl.querySelectorAll('.khub-card').forEach(function (card) {
+            const typeMatch = activeType === 'all' || card.dataset.type === activeType;
+            const textMatch = !query || card.dataset.search.includes(query);
+            const show = typeMatch && textMatch;
+            card.classList.toggle('khub-hidden', !show);
+            if (show) { catHasVisible = true; anyVisible = true; }
+          });
+          catEl.classList.toggle('khub-hidden', !catHasVisible);
+          if (catHasVisible && query) { catEl.classList.add('open'); catEl.querySelector('.khub-cat-trigger').setAttribute('aria-expanded', 'true'); }
+        });
+        document.getElementById('khubNoResults').style.display = anyVisible ? 'none' : 'block';
+      }
+
+      renderHub();
+      document.getElementById('khubSearch').addEventListener('input', applyFilters);
+      document.querySelectorAll('.khub-filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.khub-filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          applyFilters();
+        });
+      });
+    })();
 
     // 3D card tilt
     document.querySelectorAll('.project-card, .expertise-card, .pub-card').forEach(card => {
